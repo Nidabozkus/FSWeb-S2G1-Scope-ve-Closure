@@ -74,10 +74,9 @@ Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyon
 */
 
 function takimSkoru() {
-  let ceyrekSkor = 0;
-  return (ceyrekSkor = Math.floor(Math.random() * (25 - 10 + 1) + 10));
+  return Math.floor(10 + Math.random() * 15);
 }
-console.log(takimSkoru());
+console.log("g2: ", takimSkoru());
 
 /* Görev 3: macSonucu() 
 Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
@@ -95,24 +94,14 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 */
 
 function macSonucu(takimSkorufonk, ceyrekSayisi) {
-  let EvSahibi = [];
-  let KonukTakim = [];
+  const sonuc = { EvSahibi: 0, KonukTakim: 0 };
   for (let i = 0; i < ceyrekSayisi; ++i) {
-    EvSahibi[i] = takimSkorufonk;
-    KonukTakim[i] = takimSkorufonk;
+    sonuc.EvSahibi += takimSkorufonk();
+    sonuc.KonukTakim += takimSkorufonk();
   }
-  let sonuc1 = 0;
-  let sonuc2 = 0;
-  for (let i = 0; i < EvSahibi.length; i++) {
-    sonuc1 += EvSahibi[i];
-  }
-  for (let i = 0; i < KonukTakim.length; i++) {
-    sonuc2 += KonukTakim[i];
-  }
-
-  return console.log("EvSahibi: ", sonuc1, "KonukTakim: ", sonuc2);
+  return sonuc;
 }
-macSonucu(takimSkoru(), 4);
+console.log("g3: ", macSonucu(takimSkoru, 4));
 /* Zorlayıcı Görev 4: periyotSkoru()
 Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   1. Görev 2'de oluşturduğunuz 'takimSkoru'nu callback fonskiyonunu olarak ilk parametrede alın
@@ -126,17 +115,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
 }
   */
 
-function periyotSkoru(takimSkorufonk) {
-  let EvSahibi = 0;
-  let KonukTakim = 0;
-  return console.log(
-    "EvSahibi: ",
-    (EvSahibi = takimSkorufonk),
-    "KonukTakim: ",
-    (KonukTakim = takimSkorufonk)
-  );
+function periyotSkoru(takimSkoruFonk) {
+  const periyot = { EvSahibi: 0, KonukTakim: 0 };
+  periyot.EvSahibi = takimSkoruFonk;
+  periyot.KonukTakim = takimSkoruFonk;
+  return periyot;
 }
-periyotSkoru(takimSkoru());
+console.log(periyotSkoru(takimSkoru()));
 /* Zorlayıcı Görev 5: skorTabelasi() 
 Aşağıdaki skorTabelasi() fonksiyonunu kullanarak aşağıdakileri yapınız:
   1. İlk parametre olarak Görev 4'te oluşturduğumuz 'periyotSkoru'nu bir değişken olarak almalı
@@ -173,14 +158,16 @@ function skorTabelasi(periyotSkorufonk, takimSkorufonk, ceyrekSayisi) {
   let EvSahibi = 0;
   let KonukTakim = 0;
   for (let i = 1; i <= ceyrekSayisi; i++);
-  console.log(
+  {
+  }
+  return (
     ". Periyot: Ev Sahibi ",
-    (EvSahibi = takimSkorufonk),
+    (EvSahibi = takimSkorufonk()),
     " - Konuk Takım",
-    (KonukTakim = takimSkorufonk)
+    (KonukTakim = takimSkorufonk())
   );
 }
-skorTabelasi(periyotSkoru(), takimSkoru(), 4);
+console.log(skorTabelasi(periyotSkoru, takimSkoru, 4));
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
 function sa() {
   console.log("Kodlar çalışıyor");
